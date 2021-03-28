@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import UserList from './screens/UserList';
+import UserCreate from './screens/UserCreate';
+import UserDetails from './screens/UserDetails';
+
+const Stack = createStackNavigator();
+
+const renderStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="UserList" options={{ title: 'Users' }} component={UserList} />
+    <Stack.Screen name="UserCreate" options={{ title: 'Create User' }} component={UserCreate} />
+    <Stack.Screen name="UserDetails" options={{ title: 'User Details' }} component={UserDetails} />
+  </Stack.Navigator>
+)
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      {renderStack()}
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
